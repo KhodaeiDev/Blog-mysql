@@ -2,7 +2,9 @@
   "name": "blog-sequelize",
   "version": "1.0.0",
   "main": "server.js",
-  "scripts": {},
+  "scripts": {
+    "db": "dotenv -e .env -- npx sequelize-cli db:create --config ./src/sequelizeConfig.js"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

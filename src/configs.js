@@ -11,6 +11,7 @@ module.exports = {
     name: process.env.DB_NAME,
     port: process.env.DB_PORT,
     pool: process.env.POOL_SIZE,
+    dialect: process.env.dialect,
   },
 
   port: parseInt(process.env.PORT) || 4000,
