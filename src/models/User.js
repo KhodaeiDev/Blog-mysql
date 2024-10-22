@@ -6,6 +6,7 @@ const User = (sequelize) =>
     {
       id: {
         type: DataTypes.INTEGER.UNSIGNED,
+        allowNull: false,
         primarykey: true,
         autoIncrement: true,
       },
@@ -20,6 +21,7 @@ const User = (sequelize) =>
       username: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
       },
       email: {
         type: DataTypes.STRING,
@@ -44,6 +46,7 @@ const User = (sequelize) =>
       },
     },
     {
+      tableName: "users",
       timestamps: true,
       createdAt: "created_at",
       updatedAt: "updated_at",

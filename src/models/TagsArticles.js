@@ -3,6 +3,7 @@ const TagsArticles = (sequelize) =>
     "tags_articles",
     {},
     {
+      tableName: "tags_articles",
       timestamps: false,
     }
   );

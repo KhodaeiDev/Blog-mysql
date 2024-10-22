@@ -3,10 +3,10 @@ const { DataTypes } = require("sequelize");
 const Article = (sequelize) =>
   sequelize.define(
     "article",
-
     {
       id: {
         type: DataTypes.INTEGER.UNSIGNED,
+        allowNull: false,
         primarykey: true,
         autoIncrement: true,
       },
@@ -30,6 +30,7 @@ const Article = (sequelize) =>
     },
 
     {
+      tableName: "articles",
       timestamps: true,
       createdAt: "created_at",
       updatedAt: "updated_at",
