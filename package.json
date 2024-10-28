@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "db": "dotenv -e .env -- npx sequelize-cli db:create --config ./src/sequelizeConfig.js"
+    "db": "dotenv -e .env -- npx sequelize-cli db:create --config ./src/sequelizeConfig.js",
+    "migrate": "dotenv -e .env -- npx sequelize-cli db:migrate --migrations-path src/migrations --config ./src/sequelizeConfig.js"
   },
   "keywords": [],
   "author": "",
