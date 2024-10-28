@@ -1,11 +1,6 @@
 const { Sequelize } = require("sequelize");
 const configs = require("./configs");
 
-const Tag = require("./models/Tag");
-const Articles = require("./models/Articles");
-const TagsArticles = require("./models/TagsArticles");
-const User = require("./models/User");
-
 const db = new Sequelize({
   host: configs.db.host,
   database: configs.db.name,
@@ -16,26 +11,31 @@ const db = new Sequelize({
   logging: configs.isProductions ? false : console.log,
 });
 
+const Tag = require("./models/Tag")(db);
+const Articles = require("./models/Articles")(db);
+const TagsArticles = require("./models/TagsArticles")(db);
+const User = require("./models/User")(db);
+
 User.hasMany(Articles, {
   onDelete: "CASCADE",
-  foreignkey: "author_id",
+  foreignKey: "author_id",
 });
 
-Articles.blongsTo(User, {
-  foreignkey: "author_id",
+Articles.belongsTo(User, {
+  foreignKey: "author_id",
   as: "author",
 });
 
 Tag.belongsToMany(Articles, {
   through: TagsArticles,
   onDelete: "CASCADE",
-  foreignkey: "tag_id",
+  foreignKey: "tag_id",
 });
 
 Articles.belongsToMany(Tag, {
   through: TagsArticles,
   onDelete: "CASCADE",
-  foreignkey: "article_id",
+  foreignKey: "article_id",
 });
 
 module.exports = db;

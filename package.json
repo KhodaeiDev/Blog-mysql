@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
+    "dev": "dotenv -e .env -- nodemon src/server.js",
     "db": "dotenv -e .env -- npx sequelize-cli db:create --config ./src/sequelizeConfig.js",
     "migrate": "dotenv -e .env -- npx sequelize-cli db:migrate --migrations-path src/migrations --config ./src/sequelizeConfig.js"
   },
