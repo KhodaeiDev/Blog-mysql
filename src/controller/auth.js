@@ -16,9 +16,9 @@ exports.register = async (req, res, next) => {
       email,
       password: hasedPassword,
     });
-    console.log("test");
+
     const accessToken = jwt.sign(
-      { id: user.id },
+      { id: user.id, role: user.role },
       configs.auth.accessTokenSecret,
       {
         expiresIn: configs.auth.accessTokenExpiresInSecond + "s",
@@ -48,4 +48,37 @@ exports.register = async (req, res, next) => {
   } catch (err) {
     next(err);
   }
+};
+
+exports.login = async (req, res, next) => {
+  const user = req.user;
+
+  const accessToken = jwt.sign(
+    { id: user.id, role: user.role },
+    configs.auth.accessTokenSecret,
+    {
+      expiresIn: configs.auth.accessTokenExpiresInSecond + "s",
+    }
+  );
+  const refreshToken = jwt.sign(
+    { id: user.id },
+    configs.auth.resreshTokenSecret,
+    {
+      expiresIn: configs.auth.resreshTokenExpiresInSecond + "s",
+    }
+  );
+
+  const refreshTokenHashed = await bcrypt.hash(refreshToken, 12);
+
+  await Redis.set(
+    `RefreshToken${user.id}`,
+    refreshTokenHashed,
+    "EX",
+    configs.auth.resreshTokenExpiresInSecond
+  );
+
+  return res.json({
+    accessToken,
+    refreshToken,
+  });
 };

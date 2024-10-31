@@ -19,7 +19,7 @@ app.use(express.static(path.resolve(__dirname, "../public")));
 app.set("view engine", "ejs");
 
 //* Passport package strategy middlewares
-app.use(localStrategy);
+passport.use(localStrategy);
 
 //* Routes
 app.get("/captcha", captchaController.get);

@@ -15,3 +15,16 @@ exports.registerValidatorSchema = yup.object().shape({
     .oneOf([yup.ref("password")])
     .required(),
 });
+
+exports.loginValidatorSchema = yup.object().shape({
+  username: yup
+    .string()
+    .min(8)
+    .matches(/^[a-zA-Z0-9]+([._]?[a-zA-Z0-9]+)*$/, "username is not valid")
+    .max(255)
+    .required(),
+  password: yup.string().min(8).required(),
+
+  // CaptchaID
+  captcha: yup.string().min(4).required(),
+});
