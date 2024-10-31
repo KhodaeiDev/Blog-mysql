@@ -38,4 +38,4 @@ Articles.belongsToMany(Tag, {
   foreignKey: "article_id",
 });
 
-module.exports = db;
+module.exports = { db, Tag, Articles, TagsArticles, User };

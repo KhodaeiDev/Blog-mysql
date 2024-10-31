@@ -32,8 +32,6 @@ const Article = (sequelize) =>
     {
       tableName: "articles",
       timestamps: true,
-      createdAt: "created_at",
-      updatedAt: "updated_at",
     }
   );
 

@@ -23,6 +23,6 @@ app.use(localStrategy);
 
 //* Routes
 app.get("/captcha", captchaController.get);
-// app.use("/auth", authRouter);
+app.use("/auth", authRouter);
 
 module.exports = app;
