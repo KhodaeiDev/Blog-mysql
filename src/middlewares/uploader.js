@@ -2,7 +2,7 @@ const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
 
-exports.multerStorage = (destination, allowtypes = /jpg|jpeg|png|webp/) => {
+exports.multerStorage = (destination, allowtypes, next) => {
   if (!path.resolve(destination)) {
     fs.mkdirSync(destination);
   }
@@ -22,7 +22,11 @@ exports.multerStorage = (destination, allowtypes = /jpg|jpeg|png|webp/) => {
     if (allowtypes.test(file.mimetype)) {
       cb(null, true);
     } else {
-      return cb(new Error("File type isn't Allowed"));
+      return cb(
+        new Error(
+          `File type isn't Allowed, just${allowtypes} format file Allowed`
+        )
+      );
     }
   };
 
