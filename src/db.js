@@ -29,7 +29,7 @@ Articles.belongsTo(User, {
 Tag.belongsToMany(Articles, {
   through: TagsArticles,
   onDelete: "CASCADE",
-  foreignKey: "tag_id",
+  foreignKey: "tags_id",
 });
 
 Articles.belongsToMany(Tag, {
