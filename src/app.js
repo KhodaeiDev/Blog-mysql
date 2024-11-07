@@ -7,6 +7,7 @@ const localStrategy = require("./strategies/local");
 
 const captchaController = require("./controller/captcha");
 const authRouter = require("./routes/auth");
+const articleRouter = require("./routes/article");
 const jwtAccessTokenSterategy = require("./strategies/jwtAccessTokenSterategy");
 
 const app = express();
@@ -26,5 +27,6 @@ passport.use("accessToken", jwtAccessTokenSterategy);
 //* Routes
 app.get("/captcha", captchaController.get);
 app.use("/auth", authRouter);
+app.use("/article", articleRouter);
 
 module.exports = app;
