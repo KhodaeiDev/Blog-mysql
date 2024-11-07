@@ -7,6 +7,7 @@ const localStrategy = require("./strategies/local");
 
 const captchaController = require("./controller/captcha");
 const authRouter = require("./routes/auth");
+const jwtAccessTokenSterategy = require("./strategies/jwtAccessTokenSterategy");
 
 const app = express();
 
@@ -20,6 +21,7 @@ app.set("view engine", "ejs");
 
 //* Passport package strategy middlewares
 passport.use(localStrategy);
+passport.use("accessToken", jwtAccessTokenSterategy);
 
 //* Routes
 app.get("/captcha", captchaController.get);
